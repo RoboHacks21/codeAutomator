@@ -117,7 +117,7 @@ def convert_to_C(songNotes, filename, loopSound):
     if not loopSound:
         f.writelines(musicLoop)
 
-    f.write("};\n\n")
+    f.write("}\n\n")
 
     f.write("void loop() {\n")
 
