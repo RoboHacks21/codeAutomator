@@ -83,22 +83,22 @@ def convert_to_C(songNotes, filename, loopSound):
     f = open(filePath, "a")
 
     # add imports
-    f.write('#include "pitches.h"')
+    f.write('#include "pitches.h"\n')
 
-    f.write('#define noteDurations 4')
+    f.write('#define noteDurations 4\n\n')
 
     # add notes array
-    f.write("int melody[] = {")
+    f.write("int melody[] = {\n")
     notesString = ""
 
-    for noteIndex in (len(songNotes) - 1):
+    for noteIndex in range(len(songNotes)):
         notesString += get_note_for_C(songNotes[noteIndex]) + ","
 
     notesString += get_note_for_C(songNotes[-1])
 
-    f.write(notesString)
+    f.write(notesString + "\n")
 
-    f.write("};")
+    f.write("};\n\n")
 
     musicLoop = """   // iterate over the notes of the melody:
     for (int thisNote = 0; thisNote < 8; thisNote++) {
@@ -109,21 +109,22 @@ def convert_to_C(songNotes, filename, loopSound):
         tone(8, melody,noteDuration);
         //pause for the note's duration plus 30 ms:
         delay(noteDuration +30);
-    }"""
+    }
+    """
 
-    f.write("void setup() {")
+    f.write("void setup() {\n")
 
     if not loopSound:
         f.writelines(musicLoop)
 
-    f.write("}")
+    f.write("};\n\n")
 
-    f.write("void loop() {")
+    f.write("void loop() {\n")
 
     if loopSound:
         f.writelines(musicLoop)
 
-    f.write("}")
+    f.write("}\n\n")
 
     # add timing variable
 
