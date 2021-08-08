@@ -4,17 +4,18 @@ A simple python project to automatically generate codes for a few repetitive tas
 ## Functionality
 
 ### 1) The CLI interface
-For users that already know how to read musical notations or have a simple song sheet consisting of alphabetical music notes of a song that they can refer to, the CLI interface helps them easily convert their song into Arduino
 
 #### pythonCLIinput.py
+For users that already know how to read musical notations or have a simple song sheet consisting of alphabetical music notes of a song that they can refer to, the CLI interface helps them easily convert their song into Arduino
 
 ### 2) The Virtual Piano Interface
+
+#### pythonPianoInput.py
+
 For the more musically inclined users they can simply play the song on our virtual piano.
 The piano has two inputs, clicking the piano key buttons on the screen, or playing the piano using the keys on their keyboard. Users can save their songs and play them back to see how they sound. They can then click the Save button to convert their song into Arduino code. 
 
 In addition to allowing users to easily transcribe their music, the virtual piano allows users to easily create and save their own songs without the need for external software.
-
-#### pythonPianoInput.py
 
 ### 3) Converting a Wav file to C code
 
