@@ -9,20 +9,15 @@ from scipy.interpolate import interp1d
 import abjad
 import re
 
+def convertFile(wavFilePath):
+    pass
 
-#WAV = 'scale.wav'
-#WAV = 'longscale.wav'
-#WAV = 'longscaleMOD.wav'
-#WAV = 'clarinet.wav'
+# get wave input from the files selection
 WAV = 'testSong.wav'
-#WAV = 'GuitarMod.wav'
-#WAV = 'VocalMOD.wav'
 
 rate, data = wavfile.read(WAV)
 time = np.arange(len(data[:,0]))*1.0/rate
 
-#plt.plot(time,data[:,0])
-#plt.show()
 
 nfft = 1024*6
 pxx, freq, bins, plot = plt.specgram(data[:,0],NFFT=nfft)
@@ -108,14 +103,7 @@ def getFreq(notes):
         print ('HARMONICS')
         print (harmonics)
 
-#        maxFFT = np.where(p==np.max(p))
-#        maxFreq = f[maxFFT]
-#        freqs.append(maxFreq)
         maxFreq = harmonics
-#        q = NoteFile['Lower']<maxFreq[0]
-#        r = NoteFile['Upper']>maxFreq[0]
-#        note = np.in1d(q,r)
-
 
         a = NoteFile[NoteFile['Lower']<maxFreq[0]]
         b = NoteFile[NoteFile['Upper']>maxFreq[0]]
@@ -127,15 +115,6 @@ def getFreq(notes):
 
 
 letterNotes, freqs, individualNotes = getFreq(notes)
-
-df1 = pd.DataFrame(letterNotes)
-df1.to_csv('outputs1.csv')
-
-df2 = pd.DataFrame(freqs)
-df2.to_csv('outputs2.csv')
-
-df3 = pd.DataFrame(individualNotes)
-df3.to_csv('outputs3.csv')
 
 staff = abjad.Staff()
 
@@ -186,10 +165,7 @@ def fixNotes(letters):
 
     return fixed
 
-print("LetterNotes")
-print(letterNotes)
-
-notesSheet = pd.read_csv("notes.csv")
+notesSheet = pd.read_csv("freqMatch.csv")
 print(notesSheet)
 
 frequenciesArray = []
@@ -197,8 +173,8 @@ notesArray = []
 for i,v in enumerate(letterNotes):
     print (v)
     print(i)
-    frequenciesArray.append(notesSheet["0.3"][v + 14])
-    notesArray.append(notesSheet["0"][v + 14])
+    frequenciesArray.append(notesSheet["LetterRep"][v + 14])
+    notesArray.append(notesSheet["AvgFreq"][v + 14])
     letters = letterNotes[i]
     try:
         fixed = fixNotes(letters)
@@ -215,15 +191,7 @@ for i,v in enumerate(letterNotes):
         pass
     except:
         print("Some error")
-#    except LilyPondParserError:
-#        m = re.search('\w.\d',letters)
-#        shortenedNote = m.group(0)
-#        newNote = shortenedNote[0]+shortenedNote[-1]
-#        fixed = fixNotes(newNote)
-#        try:
-#            staff.append(fixed)
-#        except DurationError:
-#            pass
+
 
 try:
     abjad.show(staff)
@@ -235,26 +203,3 @@ print(frequenciesArray)
 print("notesArray")
 print(notesArray)
 
-'''Code to turn the xlsx into a more useable xlsx'''
-#freqs = pd.read_csv('Book1.csv',delimiter='\t',header=None)
-#
-#column1 = []
-#column2 = []
-#notes = []
-#for i,v in enumerate(freqs[9]):
-#    if i>4:
-#        if i%2==0:
-#            column2.append(v)
-#        else:
-#            column1.append(v)
-#            notes.append(freqs[8][i])
-#
-#z = pd.DataFrame([notes,column1,column2])
-#print z
-#z = z.T
-#
-#z = z.set_index(0)
-#z.index.name = 'Notes'
-#z.columns = ['Lower','Upper']
-#
-#z.to_excel('NoteFreq.xlsx',sheet_name='Sheet1')

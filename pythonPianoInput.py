@@ -1,12 +1,23 @@
-from tkinter import*
+import tkinter as tk
 import time
-import pygame
+import datetime
+
+# declare variables
+# timeNow
+# previousTime
+# calculate time difference timeDiff
 
 
 
-# init the pygame
+# declare function to append
 
 
+def onKeyPress(event):
+    text.insert('end', 'You pressed %s\n' % (event.char, ))
 
-# create the tkinter user interface
-
+root = tk.Tk()
+root.geometry('300x200')
+text = tk.Text(root, background='black', foreground='white', font=('Comic Sans MS', 12))
+text.pack()
+root.bind('<KeyPress>', onKeyPress)
+root.mainloop()
