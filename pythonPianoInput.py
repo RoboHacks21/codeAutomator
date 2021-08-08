@@ -175,7 +175,7 @@ playBtn = Button(app,
                  height=2)
 
 nextBtn = Button(app,
-               text="Next",
+               text="Save",
                  width=10,
                  height=2)
 
@@ -203,8 +203,11 @@ def nextScreen():
         # show tkinter message box
         print("cannot proceed, array empty")
     else:
-        print("Next!")
+        print("Save")
         # go to next screen
+
+    noteText["text"] = "Saved!"
+
 
 
 def toggle_recording():
@@ -317,7 +320,7 @@ def generateOutPut():
     title = titleEntry.get()
     if not title.strip():
         now = datetime.now()
-        title = now.strftime("%m%d/%Y") + "_CCode"
+        title = now.strftime("%m%d%Y") + "_CCode"
     convert_to_C(notesArray, title, False)
 
 
@@ -358,8 +361,7 @@ def convert_to_C(songNotes, filename, loopSound):
         tone(8, melody,noteDuration);
         //pause for the note's duration plus 30 ms:
         delay(noteDuration +30);
-    }
-    """
+    }\n"""
 
     f.write("void setup() {\n")
 

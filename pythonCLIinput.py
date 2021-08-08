@@ -109,8 +109,7 @@ def convert_to_C(songNotes, filename, loopSound):
         tone(8, melody,noteDuration);
         //pause for the note's duration plus 30 ms:
         delay(noteDuration +30);
-    }
-    """
+    }\n"""
 
     f.write("void setup() {\n")
 
@@ -173,7 +172,6 @@ if __name__ == '__main__':
     convert_to_C(songNotes, filename, loopSound)
 
     print("Song converted! Bye!")
-    input()
 
 
 
