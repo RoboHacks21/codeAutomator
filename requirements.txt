@@ -37,6 +37,7 @@ py==1.10.0
 PyAudio @ file:///C:/Users/Amelia/Documents/GitHub/codeAutomator/importedStuff/PyAudio-0.2.11-cp38-cp38-win_amd64.whl
 pycodestyle==2.7.0
 pyflakes==2.3.1
+pygame==2.0.1
 Pygments==2.9.0
 pyparsing==2.4.7
 pytest==6.2.4

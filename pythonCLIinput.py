@@ -131,6 +131,7 @@ def convert_to_C(songNotes, filename, loopSound):
     f.close()
 
 
+
 if __name__ == '__main__':
     print("Create new file")
     filename = get_file_name()
@@ -162,12 +163,10 @@ if __name__ == '__main__':
     while (inputInvalid):
         confirmation = input("Loop song? [y/n]: ")
         if confirmation == "y":
-            break
             loopSound = True
-            print("Input invalid!")
+            break
         elif confirmation == "n":
             break
-            print("Input invalid!")
 
     print("Converting to Arduino Code")
 
